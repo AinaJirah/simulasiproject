@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>SIPADES</title>
+  <title>SIPIA</title>
   <link href="assets/lp/img/logo.png" rel="icon" />
 
   <!-- Fonts -->
@@ -32,7 +32,7 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
       <div class="logo d-flex align-items-center me-auto">
         <img src="assets/lp/img/ini.png" alt="" />
-        <h1 class="sitename">SIPADES</h1>
+        <h1 class="sitename">SIPIA</h1>
       </div>
 
       <nav id="navmenu" class="navmenu">
@@ -57,13 +57,11 @@
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
             <h1>
-              Sistem Peminjaman Aset Desa Pada Kantor Desa Pemuda, Kecamatan
-              Pelaihari
+              Sistem Informasi Pendaftaran dan Informasi Akademik
             </h1>
             <p>
               <i>
-                "Login sekarang untuk melakukan peminjaman aset di kantor desa
-                Pemuda."
+                "Login sekarang untuk melakukan pendaftaran."
               </i>
             </p>
           </div>
