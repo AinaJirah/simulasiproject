@@ -29,12 +29,12 @@ class Jadwal extends BaseController
         if ($level === 'Admin') {
             echo view('components/header', $data);
             echo view('components/sidebar_admin', $data);
-            echo view('admin/master_data/aset_barang');
+            echo view('admin/jadwal');
             echo view('components/footer');
         } elseif ($level === 'Masyarakat') {
             echo view('components/header', $data);
             echo view('components/sidebar_masyarakat', $data);
-            echo view('mahasiswa/management/aset_barang');
+            echo view('mahasiswa/jadwal/jadwal');
             echo view('components/footer');
         } else {
             return redirect()->to('/unauthorized');
