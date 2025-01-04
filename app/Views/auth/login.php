@@ -41,7 +41,7 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 mb-3 rounded">Login</button>
+                <a href="/pendaftaran" class="btn btn-primary w-100 mb-3 rounded">Login</a>
                 <p class="mb-0 text-center text-muted">
                     Belum punya akun? <a href="/register" class="fw-bold">Register</a>
                 </p>
