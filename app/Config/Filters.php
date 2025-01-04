@@ -25,8 +25,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'Admin'         => \App\Filters\FilterAdmin::class,
-        'Kades'         => \App\Filters\FilterKades::class,
-        'Masyarakat'    => \App\Filters\FilterMasyarakat::class,
+        'Mahasiswa'         => \App\Filters\FilterMahasiswa::class,
     ];
 
     /**
@@ -42,20 +41,15 @@ class Filters extends BaseConfig
                     '/',
                     'login',
                     'register',
+                    'pendaftaran',
                 ]
             ],
-            'Kades' => [
+            'Mahasiswa' => [
                 'except' => [
                     '/',
                     'login',
                     'register',
-                ]
-            ],
-            'Masyarakat' => [
-                'except' => [
-                    '/',
-                    'login',
-                    'register',
+                    'pendaftaran',
                 ]
             ],
             // 'honeypot',
@@ -70,16 +64,10 @@ class Filters extends BaseConfig
                     'admin',
                 ]
             ],
-            'Kades' => [
+            'Mahasiswa' => [
                 'except' => [
-                    'kades/*',
-                    'kades',
-                ]
-            ],
-            'Masyarakat' => [
-                'except' => [
-                    'peminjam/*',
-                    'peminjam',
+                    'mahasiswa/*',
+                    'mahasiswa',
                 ]
             ],
             // 'honeypot',

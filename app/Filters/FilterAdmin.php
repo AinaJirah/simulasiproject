@@ -13,11 +13,11 @@ class FilterAdmin implements FilterInterface
         $currentURI = $request->getUri()->getPath();
 
         // Allow access to landing page and login routes
-        if ($currentURI == '/' || $currentURI == 'login' || $currentURI == 'register') {
+        if ($currentURI == '/' || $currentURI == 'login' || $currentURI == 'register' || $currentURI == 'pendaftaran') {
             return;
         }
     
-        if (session()->get('id_pengguna') == NULL) {
+        if (session()->get('id_akun') == NULL) {
             session()->setFlashdata('pesan', '<div class="alert alert-danger" role="alert">Silahkan Login</div>');
             return redirect()->to(base_url('/login'));
         }

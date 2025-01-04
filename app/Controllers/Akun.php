@@ -3,15 +3,15 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\ModelPengguna;
+use App\Models\ModelAkun;
 
-class Pengguna extends BaseController
+class Akun extends BaseController
 {
-    protected $modelPengguna;
+    protected $modelAkun;
 
     public function __construct()
     {
-        $this->modelPengguna = new ModelPengguna();
+        $this->modelAkun = new ModelAkun();
     }
 
     public function index()
@@ -21,7 +21,7 @@ class Pengguna extends BaseController
         if ($level === 'Admin') {
             $data = [
                 'title' => 'Akun',
-                'akun' => $this->modelPengguna->findAll(),
+                'akun' => $this->modelAkun->findAll(),
             ];
             echo view('components/header', $data);
             echo view('components/sidebar_admin', $data);
@@ -40,7 +40,7 @@ class Pengguna extends BaseController
         return redirect()->to('/unauthorized');
     }
 
-    $id_pengguna = $this->request->getPost('id_pengguna');
+    $id_akun = $this->request->getPost('id_akun');
 
     // Validasi input
     $rules = [
@@ -54,7 +54,7 @@ class Pengguna extends BaseController
     }
 
     if (!$this->validate($rules)) {
-        return redirect()->back()->withInput()->with('validation', $this->validator)->with('edit_gagal', true)->with('id_pengguna', $id_pengguna);
+        return redirect()->back()->withInput()->with('validation', $this->validator)->with('edit_gagal', true)->with('id_akun', $id_akun);
     }
 
     $data = [
@@ -67,7 +67,7 @@ class Pengguna extends BaseController
         $data['password'] = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
     }
 
-    $this->modelPengguna->update($id_pengguna, $data);
+    $this->modelAkun->update($id_akun, $data);
     session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Data berhasil diubah</div>');
     return redirect()->to('/admin/master-akun');
 }
@@ -81,7 +81,7 @@ class Pengguna extends BaseController
         if ($level === 'Admin') {
             $data = [
                 'title' => 'Data Pengguna',
-                'pengguna' => $this->modelPengguna->findAll(),
+                'pengguna' => $this->modelAkun->findAll(),
             ];
             echo view('components/header', $data);
             echo view('components/sidebar_admin', $data);
@@ -121,7 +121,7 @@ class Pengguna extends BaseController
         'level' => $this->request->getPost('level'),
         'status_akun' => 'Aktif',
     ];
-    $this->modelPengguna->insert($data);
+    $this->modelAkun->insert($data);
     session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan</div>');
     return redirect()->to('/admin/master-pengguna');
 }
@@ -134,7 +134,7 @@ public function edit_pengguna()
         return redirect()->to('/unauthorized');
     }
 
-    $id_pengguna = $this->request->getPost('id_pengguna');
+    $id_akun = $this->request->getPost('id_akun');
 
     // Validasi input
     if (!$this->validate([
@@ -150,7 +150,7 @@ public function edit_pengguna()
         'no_hp' => $this->request->getPost('no_hp'),
         'alamat' => $this->request->getPost('alamat'),
     ];
-    $this->modelPengguna->update($id_pengguna, $data);
+    $this->modelAkun->update($id_akun, $data);
     session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Data berhasil diubah</div>');
     return redirect()->to('/admin/master-pengguna');
 }
@@ -164,8 +164,8 @@ public function edit_pengguna()
             return redirect()->to('/unauthorized');
         }
 
-        $id_pengguna = $this->request->getPost('id_pengguna');
-        $this->modelPengguna->delete($id_pengguna);
+        $id_akun = $this->request->getPost('id_akun');
+        $this->modelAkun->delete($id_akun);
         session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Data berhasil dihapus</div>');
         return redirect()->to('/admin/master-pengguna');
     }
