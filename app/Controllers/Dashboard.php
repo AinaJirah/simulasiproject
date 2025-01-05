@@ -7,6 +7,8 @@ use App\Models\ModelAkun;
 use App\Models\ModelNilai;
 use App\Models\ModelMahasiswa;
 use App\Models\ModelMataKuliah;
+use App\Models\ModelJadwal;
+
 
 class Dashboard extends BaseController
 {
@@ -14,6 +16,8 @@ class Dashboard extends BaseController
     protected $ModelNilai;
     protected $ModelMahasiswa;
     protected $ModelMataKuliah;
+    protected $ModelJadwal;
+
 
     public function __construct()
     {
@@ -21,6 +25,8 @@ class Dashboard extends BaseController
         $this->ModelNilai = new ModelNilai();
         $this->ModelMahasiswa = new ModelMahasiswa();
         $this->ModelMataKuliah = new ModelMataKuliah();
+        $this->ModelJadwal = new ModelJadwal();
+
     }
 
     public function index()
@@ -68,11 +74,23 @@ class Dashboard extends BaseController
 
                 $ipk = $totalMataKuliah > 0 ? round($totalNilai / $totalMataKuliah, 2) : 0;
 
+                // Ambil jadwal hari ini
+                $hariIni = date('l'); // Contoh: "Monday", "Tuesday", dll.
+                $jadwalHariIni = $this->ModelJadwal
+                    ->select('jadwal.*, matakuliah.nama_matakuliah, dosen.nama_dosen')
+                    ->join('matakuliah', 'matakuliah.id_matakuliah = jadwal.id_matakuliah')
+                    ->join('nilai', 'nilai.id_matakuliah = matakuliah.id_matakuliah')
+                    ->join('dosen', 'dosen.id_dosen = jadwal.id_dosen')
+                    ->where('nilai.id_mahasiswa', $id_mahasiswa)
+                    ->where('jadwal.hari', $hariIni) // Filter berdasarkan hari ini
+                    ->findAll();
+
                 $data = [
                     'title' => 'Dashboard',
                     'ipk' => $ipk,
                     'total_sks' => $totalSKS,
                     'total_matakuliah' => $totalMataKuliah,
+                    'jadwal_hari_ini' => $jadwalHariIni,
                 ];
             } else {
                 $data = [
@@ -80,6 +98,7 @@ class Dashboard extends BaseController
                     'ipk' => 0,
                     'total_sks' => 0,
                     'total_matakuliah' => 0,
+                    'jadwal_hari_ini' => [],
                 ];
             }
 
