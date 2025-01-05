@@ -45,7 +45,7 @@
                                     <?php endif; ?>
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary mb-4 rounded">Login</button>
-                                <p class="mb-0 text-muted">Lupa password? <a href="/resetpassword" class="btn-link">Klik di sini</a></p>
+                                <p class="mb-0 text-muted">Lupa password? <a href="/reset" class="btn-link">Klik di sini</a></p>
                             </form>
                         </div>
                     </div>

@@ -21,7 +21,7 @@
                             <h4 class="mb-3 f-w-400"><b>Lupa Password</b></h4>
                             <h5 class="mb-3 f-w-400">Masukkan Email Anda</h5>
                             <?= session()->getFlashdata('pesan'); ?>
-                            <form action="/forgot/process" method="post">
+                            <form action="/reset" method="post">
                                 <div class="form-group mb-4">
                                     <label class="floating-label" for="email">Email</label>
                                     <input type="email" class="form-control" name="email" id="email" required>
@@ -32,8 +32,8 @@
                                     <?php endif; ?>
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary mb-4 rounded">Kirim Link Reset</button>
-                                <p class="mb-0 text-muted"><a href="/login" class="btn-link">Kembali ke Login</a></p>
-                            </form>
+                                <p class="mb-0 text-muted">Sudah ingat Password? <a href="/login" class="f-w-400">Login</a></p>
+                                </form>
                         </div>
                     </div>
                 </div>
