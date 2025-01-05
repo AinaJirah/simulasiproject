@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\ModelAkun;
 use App\Models\ModelNilai;
 use App\Models\ModelMahasiswa;
 use App\Models\ModelMataKuliah;
@@ -12,7 +11,6 @@ use App\Models\ModelJadwal;
 
 class Dashboard extends BaseController
 {
-    protected $ModelAkun;
     protected $ModelNilai;
     protected $ModelMahasiswa;
     protected $ModelMataKuliah;
@@ -21,7 +19,6 @@ class Dashboard extends BaseController
 
     public function __construct()
     {
-        $this->ModelAkun = new ModelAkun();
         $this->ModelNilai = new ModelNilai();
         $this->ModelMahasiswa = new ModelMahasiswa();
         $this->ModelMataKuliah = new ModelMataKuliah();
@@ -38,7 +35,6 @@ class Dashboard extends BaseController
             // Data tambahan untuk Admin
             $data = [
                 'title' => 'Dashboard',
-                'pengguna' => $this->ModelAkun->where('level', 'mahasiswa')->countAllResults(),
                 'total_mahasiswa' => $this->ModelMahasiswa->countAllResults(),
                 'total_matakuliah' => $this->ModelMataKuliah->countAllResults(),
                 'mahasiswa_per_jurusan' => $this->ModelMahasiswa->select('id_jurusan, COUNT(*) as total')
