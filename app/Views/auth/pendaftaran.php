@@ -69,6 +69,17 @@
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
+                  <label for="no_telpon" class="form-label">No. Telpon</label>
+                  <input type="number"
+                    class="form-control <?= isset($validation) && $validation->hasError('no_telpon') ? 'is-invalid' : '' ?>"
+                    id="no_telpon" name="no_telpon" value="<?= old('no_telpon') ?>" required />
+                  <div class="invalid-feedback">
+                    <?= isset($validation) ? $validation->getError('no_telpon') : '' ?>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
                   <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
                   <input type="text"
                     class="form-control <?= isset($validation) && $validation->hasError('tempat_lahir') ? 'is-invalid' : '' ?>"
@@ -77,8 +88,6 @@
                     <?= isset($validation) ? $validation->getError('tempat_lahir') : '' ?>
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
                   <input type="date"
@@ -88,15 +97,7 @@
                     <?= isset($validation) ? $validation->getError('tanggal_lahir') : '' ?>
                   </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                  <label for="no_telpon" class="form-label">No. Telpon</label>
-                  <input type="number"
-                    class="form-control <?= isset($validation) && $validation->hasError('no_telpon') ? 'is-invalid' : '' ?>"
-                    id="no_telpon" name="no_telpon" value="<?= old('no_telpon') ?>" required />
-                  <div class="invalid-feedback">
-                    <?= isset($validation) ? $validation->getError('no_telpon') : '' ?>
-                  </div>
-                </div>
+
               </div>
               <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat</label>
@@ -164,8 +165,8 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="file_foto" class="form-label">Foto</label>
-                <small class="text-muted d-block mb-1">Jenis file yang diperbolehkan: JPG, PNG. Maksimal ukuran:
+                <label for="file_foto" class="form-label">Foto </label>
+                <small class="text-muted d-block mb-1">Masukan Foto Anda, Dengan jenis file yang diperbolehkan: JPG, PNG. Maksimal ukuran:
                   2MB.</small>
                 <input type="file"
                   class="form-control <?= isset($validation) && $validation->hasError('file_foto') ? 'is-invalid' : '' ?>"
