@@ -42,6 +42,7 @@ class Filters extends BaseConfig
                     'login',
                     'register',
                     'pendaftaran',
+                    'loginpendaftaran',
                 ]
             ],
             'Mahasiswa' => [
@@ -50,6 +51,7 @@ class Filters extends BaseConfig
                     'login',
                     'register',
                     'pendaftaran',
+                    'loginpendaftaran',
                 ]
             ],
             // 'honeypot',

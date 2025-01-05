@@ -13,7 +13,7 @@ class FilterAdmin implements FilterInterface
         $currentURI = $request->getUri()->getPath();
 
         // Allow access to landing page and login routes
-        if ($currentURI == '/' || $currentURI == 'login' || $currentURI == 'register' || $currentURI == 'pendaftaran') {
+        if ($currentURI == '/' || $currentURI == 'login' || $currentURI == 'register' || $currentURI == 'pendaftaran' || $currentURI == 'loginpendaftaran') {
             return;
         }
     

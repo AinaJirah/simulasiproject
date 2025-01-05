@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>SIPADES | Register</title>
+    <title>SIPIA | Register</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <div class="card-body">
                         <h4 class="mb-3 f-w-400">Register</h4>
-                        <h5 class="mb-3 f-w-400">Sistem Informasi Pemijaman Aset Desa Pada Kantor Desa Pemuda</h5>
+                        <h5 class="mb-3 f-w-400">Pendaftaran</h5>
                         <?= session()->getFlashdata('pesan'); ?>
                         <form action="/register" method="post">
                             <div class="form-group mb-3">
@@ -31,22 +31,12 @@
                                 <?php endif; ?>
                             </div>
                             <div class="form-group mb-3">
-                                <label class="floating-label" for="no">No. Telpon</label>
-                                <input type="number" class="form-control" name="no_hp" id="no"
-                                    value="<?= old('no_hp'); ?>" required>
+                                <label class="floating-label" for="email">email</label>
+                                <input type="text" class="form-control" name="email" id="email"
+                                    value="<?= old('email'); ?>" required>
                                 <?php if (session()->get('validation')): ?>
                                     <div class="text-danger">
-                                        <?= session()->get('validation')->getError('no_hp') ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="floating-label" for="alamat">Alamat Lengkap</label>
-                                <input type="text" class="form-control" name="alamat" id="alamat"
-                                    value="<?= old('alamat'); ?>" required>
-                                <?php if (session()->get('validation')): ?>
-                                    <div class="text-danger">
-                                        <?= session()->get('validation')->getError('alamat') ?>
+                                        <?= session()->get('validation')->getError('email') ?>
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -79,7 +69,7 @@
                                 <?php endif; ?>
                             </div>
                             <button class="btn btn-block btn-primary mb-4">Register</button>
-                            <p class="mb-0 text-muted">Sudah punya akun? <a href="/login" class="f-w-400">Login</a></p>
+                            <p class="mb-0 text-muted">Sudah punya akun? <a href="/loginpendaftaran" class="f-w-400">Login</a></p>
                         </form>
                     </div>
                 </div>

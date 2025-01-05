@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-use App\Models\ModelPengguna;
+use App\Models\ModelAkun;
 
 class Validasi extends BaseController
 {
@@ -16,26 +16,26 @@ class Validasi extends BaseController
 
     public function login()
     {
-        $ModelPengguna = new ModelPengguna();
+        $ModelAkun = new ModelAkun();
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
         // Validasi input
-        if (!$this->validate([
-            'username' => 'required|min_length[3]|max_length[255]',
-            'password' => 'required|min_length[5]|max_length[255]',
-        ])) {
+        if (
+            !$this->validate([
+                'username' => 'required|min_length[3]|max_length[255]',
+                'password' => 'required|min_length[5]|max_length[255]',
+            ])
+        ) {
             return redirect()->back()->withInput()->with('validation', $this->validator);
         }
 
-        $data = $ModelPengguna->where('username', $username)->first();
+        $data = $ModelAkun->where('username', $username)->first();
         if ($data) {
             if (password_verify($password, $data['password'])) {
                 session()->set([
-                    'id_pengguna' => $data['id_pengguna'],
+                    'id_akun' => $data['id_akun'],
                     'nama' => $data['nama'],
-                    'alamat' => $data['alamat'],
-                    'no_hp' => $data['no_hp'],
                     'username' => $data['username'],
                     'level' => $data['level'],
                 ]);
@@ -43,10 +43,8 @@ class Validasi extends BaseController
                 switch ($data['level']) {
                     case 'Admin':
                         return redirect()->to('/admin');
-                    case 'Masyarakat':
-                        return redirect()->to('/peminjam');
-                    case 'Ka. Des':
-                        return redirect()->to('/kades');
+                    case 'Mahasiswa':
+                        return redirect()->to('/mahasiswa');
                     default:
                         return redirect()->to('/unauthorized');
                 }
@@ -60,10 +58,51 @@ class Validasi extends BaseController
         }
     }
 
+    public function pendaftaran()
+    {
+        echo view('auth/loginpendaftaran');
+    }
+
+    public function loginpendaftaran()
+    {
+        $ModelAkun = new ModelAkun();
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        // Validasi input
+        if (
+            !$this->validate([
+                'username' => 'required|min_length[3]|max_length[255]',
+                'password' => 'required|min_length[5]|max_length[255]',
+            ])
+        ) {
+            return redirect()->back()->withInput()->with('validation', $this->validator);
+        }
+
+        $data = $ModelAkun->where('username', $username)->first();
+        if ($data) {
+            if (password_verify($password, $data['password'])) {
+                session()->set([
+                    'id_akun' => $data['id_akun'],
+                    'nama' => $data['nama'],
+                    'username' => $data['username'],
+                    'level' => $data['level'],
+                ]);
+                return redirect()->to('/pendaftaran');
+            } else {
+                session()->setFlashdata('pesan', '<div class="alert alert-danger" role="alert">Password salah</div>');
+                return redirect()->to('/loginpendaftaran')->withInput();
+            }
+        } else {
+            session()->setFlashdata('pesan', '<div class="alert alert-danger" role="alert">Username tidak ditemukan</div>');
+            return redirect()->to('/loginpendaftaran')->withInput();
+        }
+    }
+
     public function profil()
     {
-        $ModelPengguna = new ModelPengguna();
-        $id_pengguna = $this->request->getPost('id_pengguna');
+        $ModelAkun = new ModelAkun();
+        $id_akun = $this->request->getPost('id_akun');
         $password = $this->request->getPost('password');
         if ($password) {
             $data = [
@@ -87,7 +126,7 @@ class Validasi extends BaseController
         session()->set('alamat', $this->request->getPost('alamat'));
         session()->set('username', $this->request->getPost('username'));
 
-        $ModelPengguna->update($id_pengguna, $data);
+        $ModelAkun->update($id_akun, $data);
 
         session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Profil berhasil diupdate</div>');
         if (session()->get('level') == 'Admin') {
@@ -101,11 +140,9 @@ class Validasi extends BaseController
 
     public function logout()
     {
-        // hapus session id_pengguna, nama, alamat, no_hp, username, level
-        session()->remove('id_pengguna');
+        session()->remove('id_akun');
         session()->remove('nama');
-        session()->remove('alamat');
-        session()->remove('no_hp');
+        session()->remove('email');
         session()->remove('username');
         session()->remove('level');
         session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Anda berhasil logout</div>');

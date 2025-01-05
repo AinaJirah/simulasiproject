@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-use App\Models\ModelPengguna;
+use App\Models\ModelAkun;
 
 class Registrasi extends BaseController
 {
@@ -19,26 +19,24 @@ class Registrasi extends BaseController
         // Validasi input
         if (!$this->validate([
             'nama' => 'required|min_length[3]|max_length[255]',
-            'no_hp' => 'required|numeric|min_length[10]|max_length[15]',
-            'alamat' => 'required|max_length[255]',
-            'username' => 'required|min_length[3]|max_length[255]|is_unique[pengguna.username]',
+            'email' => 'required|min_length[3]|max_length[255]|valid_email',
+            'username' => 'required|min_length[3]|max_length[255]|is_unique[akun.username]',
             'password' => 'required|min_length[5]|max_length[255]',
             'password1' => 'required|min_length[5]|matches[password]',
         ])) {
             return redirect()->back()->withInput()->with('validation', $this->validator);
         }
 
-        $ModelPengguna = new ModelPengguna();
+        $ModelAkun = new ModelAkun();
         $data = [
             'nama' => $this->request->getPost('nama'),
-            'no_hp' => $this->request->getPost('no_hp'),
-            'alamat' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
             'username' => $this->request->getPost('username'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'level' => 'Masyarakat',
+            'level' => 'Mahasiswa',
         ];
-        $ModelPengguna->insert($data);
+        $ModelAkun->insert($data);
         session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Akun berhasil dibuat</div>');
-        return redirect()->to('/login');
+        return redirect()->to('/loginpendaftaran');
     }
 }

@@ -19,9 +19,9 @@
                     <div class="col-md-12">
                         <div class="card-body ">
                             <h4 class="mb-3 f-w-400"><b>Login</b></h4>
-                            <h5 class="mb-3 f-w-400">Sistem Informasi Akademik</h5>
+                            <h5 class="mb-3 f-w-400">Pendaftaran Perkuliahan</h5>
                             <?= session()->getFlashdata('pesan'); ?>
-                            <form action="/login" method="post">
+                            <form action="/loginpendaftaran" method="post">
                                 <div class="form-group mb-3">
                                     <label class="floating-label" for="user">Username</label>
                                     <input type="text" class="form-control" name="username" id="user"

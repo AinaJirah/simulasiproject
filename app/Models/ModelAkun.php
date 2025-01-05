@@ -12,5 +12,5 @@ class ModelAkun extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['username', 'password', 'level', 'status_akun', 'created_add'];
+    protected $allowedFields    = ['nama','email','username', 'password', 'level', 'status_akun', 'created_add'];
 }

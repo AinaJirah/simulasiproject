@@ -15,6 +15,9 @@ $routes->post('/login', 'Validasi::login');
 $routes->get('/logout', 'Validasi::logout');
 $routes->post('/profil', 'Validasi::profil');
 
+$routes->get('/loginpendaftaran', 'Validasi::pendaftaran');
+$routes->post('/loginpendaftaran', 'Validasi::loginpendaftaran');
+
 //Registrasi
 $routes->get('/register', 'Registrasi::index');
 $routes->post('/register', 'Registrasi::registrasi');
