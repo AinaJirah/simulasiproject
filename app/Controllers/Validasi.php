@@ -151,10 +151,10 @@ class Validasi extends BaseController
         session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Profil berhasil diupdate</div>');
         if (session()->get('level') == 'Admin') {
             return redirect()->to('/admin');
-        } elseif (session()->get('level') == 'Ka. Des') {
-            return redirect()->to('/kades');
+        } elseif (session()->get('level') == 'Mahasiswa') {
+            return redirect()->to('/mahasiswa');
         } else {
-            return redirect()->to('/peminjam');
+            return redirect()->to('/');
         }
     }
 

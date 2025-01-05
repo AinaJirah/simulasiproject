@@ -8,7 +8,7 @@
             </div>
             <form action="/profil" method="post">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id_pengguna" value="<?= session()->get('id_pengguna'); ?>">
+                <input type="hidden" name="id_akun" value="<?= session()->get('id_akun'); ?>">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6">
