@@ -15,6 +15,9 @@ $routes->post('/login', 'Validasi::login');
 $routes->get('/logout', 'Validasi::logout');
 $routes->post('/profil', 'Validasi::profil');
 
+$routes->get('/resetpassword', 'Validasi::resetpassword');
+$routes->post('/process', 'Validasi::process');
+
 $routes->get('/loginpendaftaran', 'Validasi::pendaftaran');
 $routes->post('/loginpendaftaran', 'Validasi::loginpendaftaran');
 
