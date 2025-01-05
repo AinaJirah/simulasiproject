@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ModelAkun;
 use App\Models\ModelPendaftaran;
+use App\Models\ModelMahasiswa;
+
 
 class Validasi extends BaseController
 {
@@ -17,6 +19,7 @@ class Validasi extends BaseController
     {
         $ModelAkun = new ModelAkun();
         $ModelPendaftaran = new ModelPendaftaran();
+        $ModelMahasiswa = new ModelMahasiswa();
 
 
         $username = $this->request->getPost('username');
@@ -39,14 +42,20 @@ class Validasi extends BaseController
                 $pendaftaran = $ModelPendaftaran->where('id_akun', $data['id_akun'])->first();
 
                 if (!$pendaftaran) {
-                    // Jika tidak ada pendaftaran
                     session()->setFlashdata('pesan', '<div class="alert alert-warning">Pendaftaran tidak ditemukan. Silakan daftar terlebih dahulu.</div>');
                     return redirect()->to('/login')->withInput();
                 }
 
                 if ($pendaftaran['status_verefikasi'] !== 'Verified') {
-                    // Jika status pendaftaran tidak "Verified"
                     session()->setFlashdata('pesan', '<div class="alert alert-danger">Pendaftaran Anda belum diverifikasi atau ditolak.</div>');
+                    return redirect()->to('/login')->withInput();
+                }
+
+                // Ambil id_mahasiswa berdasarkan id_akun
+                $mahasiswa = $ModelMahasiswa->where('id_akun', $data['id_akun'])->first();
+
+                if (!$mahasiswa) {
+                    session()->setFlashdata('pesan', '<div class="alert alert-warning">Akun ini tidak terdaftar sebagai mahasiswa.</div>');
                     return redirect()->to('/login')->withInput();
                 }
 
@@ -56,6 +65,7 @@ class Validasi extends BaseController
                     'nama' => $data['nama'],
                     'username' => $data['username'],
                     'level' => $data['level'],
+                    'id_mahasiswa' => $mahasiswa['id_mahasiswa'], // Tambahkan id_mahasiswa ke sesi
                 ]);
 
                 switch ($data['level']) {
@@ -75,6 +85,7 @@ class Validasi extends BaseController
             return redirect()->to('/login')->withInput();
         }
     }
+
 
     public function pendaftaran()
     {

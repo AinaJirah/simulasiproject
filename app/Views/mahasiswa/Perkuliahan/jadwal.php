@@ -1,62 +1,44 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-body table-border-style">
-                <div class="table-responsive">
-                    <table id="mytable" class="table" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Barang</th>
-                                <th>Kategori Jenis</th>
-                                <th>Stok</th>
-                                <th>Ketersediaan</th>
-                                <th>Foto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 1;
-                            foreach ($aset as $row) : ?>
-                                <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td><?= $row['nama_aset']; ?></td>
-                                    <td><?= $row['jenis']; ?></td>
-                                    <td><?= $row['stok']; ?></td>
-                                    <td>
-                                        <?php if ($row['stok'] > 0) : ?>
-                                            <div class="badge badge-success">Tersedia</div>
-                                        <?php else : ?>
-                                            <div class="badge badge-secondary">Tidak Tersedia</div>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <a href="" data-toggle="modal" data-target="#modalFoto<?= $row['id_aset']; ?>">
-                                            <img src="<?= base_url('img/aset/' . $row['foto']); ?>" alt="Foto Aset" width="100">
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="card-body">
+                <!-- Loop through each day -->
+                <?php foreach ($jadwalByHari as $hari => $jadwal): ?>
+                    <div class="card mb-3">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><?= $hari ?>, <?= date('d F Y', strtotime($jadwal[0]['tanggal'] ?? date('Y-m-d'))) ?></h6>
+                        </div>
+                        <div class="card-body">
+                            <?php if (count($jadwal) > 0): ?>
+                                <table class="table table-bordered table-striped">
+                                    <thead class="bg-primary text-white">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Mata Kuliah</th>
+                                            <th>Dosen</th>
+                                            <th>Jam</th>
+                                            <th>Ruangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1; foreach ($jadwal as $row): ?>
+                                            <tr>
+                                                <td><?= $no++; ?></td>
+                                                <td><?= $row['nama_matakuliah']; ?></td>
+                                                <td><?= $row['nama_dosen']; ?></td>
+                                                <td><?= $row['jam_mulai']; ?> - <?= $row['jam_selesai']; ?></td>
+                                                <td><?= $row['ruangan']; ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            <?php else: ?>
+                                <p class="text-center">Tidak ada jadwal kuliah pada hari ini.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
 </div>
-
-<?php foreach ($aset as $row) : ?>
-    <!-- MODAL DETAIL FOTO -->
-    <div id="modalFoto<?= $row['id_aset']; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Detail Foto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img src="/img/aset/<?= $row['foto']; ?>" alt="Foto Aset" width="500">
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>

@@ -3,41 +3,57 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\ModelAset;
-use App\Models\ModelJenisAset;
+use App\Models\ModelJadwal;
+use App\Models\ModelMataKuliah;
+use App\Models\ModelDosen;
 
 class Jadwal extends BaseController
 {
-    protected $ModelAset;
-    protected $ModelJenisAset;
+    protected $ModelJadwal;
+    protected $ModelMataKuliah;
+    protected $ModelDosen;
 
     public function __construct()
     {
-        $this->ModelAset = new ModelAset();
-        $this->ModelJenisAset = new ModelJenisAset();
+        $this->ModelJadwal = new ModelJadwal();
+        $this->ModelMataKuliah = new ModelMataKuliah();
+        $this->ModelDosen = new ModelDosen();
     }
 
     public function index()
     {
         $level = session()->get('level');
-        $data = [
-            'title' => 'Aset Barang',
-            'jenis_aset' => $this->ModelJenisAset->findAll(),
-            'aset' => $this->ModelAset->join('jenis_aset', 'jenis_aset.id_jenis = aset.id_jenis')->findAll(),
-        ];
+        $id_mahasiswa = session()->get('id_mahasiswa');
 
-        if ($level === 'Admin') {
-            echo view('components/header', $data);
-            echo view('components/sidebar_admin', $data);
-            echo view('admin/jadwal');
-            echo view('components/footer');
-        } elseif ($level === 'Masyarakat') {
-            echo view('components/header', $data);
-            echo view('components/sidebar_masyarakat', $data);
-            echo view('mahasiswa/jadwal/jadwal');
-            echo view('components/footer');
-        } else {
+        if ($level !== 'Mahasiswa') {
             return redirect()->to('/unauthorized');
         }
+
+        // Mengambil jadwal berdasarkan mata kuliah yang diambil mahasiswa
+        $jadwal = $this->ModelJadwal
+            ->select('jadwal.*, matakuliah.nama_matakuliah, dosen.nama_dosen')
+            ->join('matakuliah', 'matakuliah.id_matakuliah = jadwal.id_matakuliah')
+            ->join('nilai', 'nilai.id_matakuliah = matakuliah.id_matakuliah')
+            ->join('dosen', 'dosen.id_dosen = jadwal.id_dosen')
+            ->where('nilai.id_mahasiswa', $id_mahasiswa)
+            ->orderBy('FIELD(hari, "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu")') // Urutan hari
+            ->findAll();
+
+        // Kelompokkan jadwal berdasarkan hari
+        $jadwalByHari = [];
+        foreach ($jadwal as $j) {
+            $jadwalByHari[$j['hari']][] = $j;
+        }
+
+        $data = [
+            'title' => 'Jadwal Perkuliahan Saya',
+            'jadwalByHari' => $jadwalByHari,
+        ];
+
+        echo view('components/header', $data);
+        echo view('components/sidebar_mahasiswa', $data);
+        echo view('mahasiswa/perkuliahan/jadwal', $data);
+        echo view('components/footer');
     }
+
 }

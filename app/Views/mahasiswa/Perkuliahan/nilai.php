@@ -1,62 +1,49 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-body table-border-style">
-                <div class="table-responsive">
-                    <table id="mytable" class="table" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Barang</th>
-                                <th>Kategori Jenis</th>
-                                <th>Stok</th>
-                                <th>Ketersediaan</th>
-                                <th>Foto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 1;
-                            foreach ($aset as $row) : ?>
-                                <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td><?= $row['nama_aset']; ?></td>
-                                    <td><?= $row['jenis']; ?></td>
-                                    <td><?= $row['stok']; ?></td>
-                                    <td>
-                                        <?php if ($row['stok'] > 0) : ?>
-                                            <div class="badge badge-success">Tersedia</div>
-                                        <?php else : ?>
-                                            <div class="badge badge-secondary">Tidak Tersedia</div>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <a href="" data-toggle="modal" data-target="#modalFoto<?= $row['id_aset']; ?>">
-                                            <img src="<?= base_url('img/aset/' . $row['foto']); ?>" alt="Foto Aset" width="100">
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <a href="/mahasiswa/nilai/cetak_transkrip" target="_blank" class="btn btn-light btn-sm">Cetak Transkip Nilai</a>
+            </div>
+            <div class="card-body">
+                <?php if (empty($nilaiBySemester)): ?>
+                    <div class="alert alert-warning text-center">
+                        <strong>Belum ada nilai yang tersedia.</strong>
+                    </div>
+                <?php else: ?>
+                    <?php foreach ($nilaiBySemester as $semester => $nilai): ?>
+                        <div class="card mb-3">
+                            <div class="card-header bg-primary text-white">
+                                Semester <?= $semester ?>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Mata Kuliah</th>
+                                            <th>SKS</th>
+                                            <th>Nilai Angka</th>
+                                            <th>Nilai Huruf</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1;
+                                        foreach ($nilai as $row): ?>
+                                            <tr>
+                                                <td><?= $no++ ?></td>
+                                                <td><?= $row['nama_matakuliah'] ?></td>
+                                                <td><?= $row['sks'] ?></td>
+                                                <td><?= number_format($row['nilai_angka'], 2) ?></td>
+                                                <td><?= $row['nilai_huruf'] ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </div>
-
-<?php foreach ($aset as $row) : ?>
-    <!-- MODAL DETAIL FOTO -->
-    <div id="modalFoto<?= $row['id_aset']; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Detail Foto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img src="/img/aset/<?= $row['foto']; ?>" alt="Foto Aset" width="500">
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>

@@ -32,12 +32,11 @@ $routes->get('/mahasiswa', 'Dashboard::index');
 
 
 // KEPALA DESA (SUB MENU MANAGEMENT)
-$routes->get('/mahasiswa/aset-barang', 'Aset::index');
-$routes->get('/mahasiswa/peminjaman', 'Peminjaman::index');
-$routes->get('/mahasiswa/menunggu-dikembalikan', 'Peminjaman::menunggu_dikembalikan');
-$routes->get('/mahasiswa/peminjaman-selesai', 'Peminjaman::peminjaman_selesai');
-$routes->post('/mahasiswa/peminjaman-selesai-cari', 'Peminjaman::peminjaman_selesai_cari');
-$routes->get('/mahasiswa/print-peminjaman-selesai/(:any)/(:any)', 'Peminjaman::print_peminjaman_selesai/$1/$2');
+$routes->get('/mahasiswa/matakuliah', 'MataKuliah::index');
+$routes->get('/mahasiswa/jadwal', 'Jadwal::index');
+$routes->get('/mahasiswa/nilai', 'Nilai::index');
+$routes->get('/mahasiswa/nilai/cetak_transkrip', 'Nilai::cetak_transkrip');
+
 
 
 
