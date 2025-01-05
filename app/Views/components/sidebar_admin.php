@@ -10,32 +10,6 @@
                 <li class="nav-item">
                     <a href="/admin" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
-                <li class="nav-item pcoded-menu-caption">
-                    <label>Master Data</label>
-                </li>
-                <li class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Data Barang</span></a>
-                    <ul class="pcoded-submenu">
-                        <li><a href="/admin/master-kategori">Kategori Jenis</a></li>
-                        <li><a href="/admin/master-aset">Aset Barang</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Data User</span></a>
-                    <ul class="pcoded-submenu">
-                        <li><a href="/admin/master-akun">Akun</a></li>
-                        <li><a href="/admin/master-pengguna">Data Pengguna</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item pcoded-menu-caption">
-                    <label>Management</label>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/aset-barang" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Aset Barang</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/peminjaman" class="nav-link "><span class="pcoded-micon"><i class="feather icon-external-link"></i></span><span class="pcoded-mtext">Peminjaman</span></a>
-                </li>
             </ul>
 
         </div>
@@ -50,7 +24,7 @@
             <!-- ========   change your logo hear   ============ -->
             <!-- <img src="/assets/dist/assets/images/logo.png" alt="" class="logo">
                 <img src="/assets/dist/assets/images/logo-icon.png" alt="" class="logo-thumb"> -->
-            <h3 class="text-white">SIPADES</h3>
+            <h3 class="text-white">SIPIA</h3>
         </a>
         <a href="#!" class="mob-toggler">
             <i class="feather icon-more-vertical"></i>
