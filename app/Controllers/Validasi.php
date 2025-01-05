@@ -167,11 +167,7 @@ class Validasi extends BaseController
 
     public function logout()
     {
-        session()->remove('id_akun');
-        session()->remove('nama');
-        session()->remove('email');
-        session()->remove('username');
-        session()->remove('level');
+        session()->destroy(); // Menghapus seluruh session yang ada
         session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Anda berhasil logout</div>');
         return redirect()->to('/');
     }
