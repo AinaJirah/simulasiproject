@@ -6,7 +6,7 @@
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive">
-                    <table id="matakuliahTable" class="table table-striped">
+                    <table id="mytable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
