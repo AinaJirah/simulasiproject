@@ -85,8 +85,6 @@ class Validasi extends BaseController
             return redirect()->to('/login')->withInput();
         }
     }
-
-
     public function pendaftaran()
     {
         echo view('auth/loginpendaftaran');
