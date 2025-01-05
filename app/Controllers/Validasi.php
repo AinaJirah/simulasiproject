@@ -134,23 +134,17 @@ class Validasi extends BaseController
         if ($password) {
             $data = [
                 'nama' => $this->request->getPost('nama'),
-                'no_hp' => $this->request->getPost('no_hp'),
-                'alamat' => $this->request->getPost('alamat'),
                 'username' => $this->request->getPost('username'),
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
             ];
         } else {
             $data = [
                 'nama' => $this->request->getPost('nama'),
-                'no_hp' => $this->request->getPost('no_hp'),
-                'alamat' => $this->request->getPost('alamat'),
                 'username' => $this->request->getPost('username'),
             ];
         }
         // session
         session()->set('nama', $this->request->getPost('nama'));
-        session()->set('no_hp', $this->request->getPost('no_hp'));
-        session()->set('alamat', $this->request->getPost('alamat'));
         session()->set('username', $this->request->getPost('username'));
 
         $ModelAkun->update($id_akun, $data);
