@@ -51,11 +51,19 @@
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
             <h1>
+<<<<<<< HEAD
               Selamat Datang di Sistem Informasi Akademik
             </h1>
             <p>
               <i>
                 Platform yang memudahkan pengelolaan akademik secara online.
+=======
+              Sistem Informasi Pendaftaran dan Informasi Akademik
+            </h1>
+            <p>
+              <i>
+                "Login sekarang untuk melakukan pendaftaran."
+>>>>>>> f0d6dd9914d8164dc7d34534c0c986d19ec99cb0
               </i>
             </p>
           </div>
