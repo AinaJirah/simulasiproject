@@ -50,16 +50,6 @@
 </head>
 
 <body>
-  <header id="header" class="header d-flex align-items-center fixed-top bg-white shadow-sm">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center">
-        <img src="assets/lp/img/logo.png" alt="Logo" width="50" />
-        <h1 class="sitename ms-3">Data Pendaftaran</h1>
-      </div>
-      <a class="btn btn-outline-primary btn-sm" href="/logout">Kembali</a>
-    </div>
-  </header>
-
   <main class="main">
     <section id="readonly-data" class="hero section">
       <div class="container mt-5">
@@ -81,7 +71,7 @@
                     <?= $pendaftaran['status_verefikasi'] ?>
                   </span>
                 </p>
-                <a href="/dashboard" class="btn btn-secondary w-100 mt-3">Kembali</a>
+                <a href="/logout" class="btn btn-secondary w-100 mt-3">Kembali</a>
               </div>
             </div>
           </div>
