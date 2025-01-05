@@ -4,19 +4,16 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelNilai;
-use App\Models\ModelMataKuliah;
 use App\Models\ModelMahasiswa;
 
 class Nilai extends BaseController
 {
     protected $ModelNilai;
-    protected $ModelMataKuliah;
     protected $ModelMahasiswa;
 
     public function __construct()
     {
         $this->ModelNilai = new ModelNilai();
-        $this->ModelMataKuliah = new ModelMataKuliah();
         $this->ModelMahasiswa = new ModelMahasiswa();
     }
 

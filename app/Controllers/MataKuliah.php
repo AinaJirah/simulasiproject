@@ -4,17 +4,14 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelMataKuliah;
-use App\Models\ModelNilai;
 
 class MataKuliah extends BaseController
 {
     protected $ModelMataKuliah;
-    protected $ModelNilai;
 
     public function __construct()
     {
         $this->ModelMataKuliah = new ModelMataKuliah();
-        $this->ModelNilai = new ModelNilai();
     }
 
     public function index()

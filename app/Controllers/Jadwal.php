@@ -4,20 +4,15 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelJadwal;
-use App\Models\ModelMataKuliah;
-use App\Models\ModelDosen;
+
 
 class Jadwal extends BaseController
 {
     protected $ModelJadwal;
-    protected $ModelMataKuliah;
-    protected $ModelDosen;
 
     public function __construct()
     {
         $this->ModelJadwal = new ModelJadwal();
-        $this->ModelMataKuliah = new ModelMataKuliah();
-        $this->ModelDosen = new ModelDosen();
     }
 
     public function index()
