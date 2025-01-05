@@ -3,15 +3,15 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\ModelPengguna;
+use App\Models\ModelAkun;
 
 class Dashboard extends BaseController
 {
-    protected $ModelPengguna;
+    protected $ModelAkun;
 
     public function __construct()
     {
-        $this->ModelPengguna = new ModelPengguna();
+        $this->ModelAkun = new ModelAkun();
     }
 
     public function index()
@@ -22,7 +22,7 @@ class Dashboard extends BaseController
         if ($level === 'Admin') {
             $data = [
                 'title' => 'Dashboard',
-                'pengguna' => $this->ModelPengguna->where('level', 'mahasiswa')->countAllResults(),
+                'pengguna' => $this->ModelAkun->where('level', 'mahasiswa')->countAllResults(),
             ];
             echo view('components/header', $data);
             echo view('components/sidebar_admin', $data);
@@ -30,7 +30,6 @@ class Dashboard extends BaseController
         } elseif ($level === 'Mahasiswa') {
             $data = [
                 'title' => 'Dashboard',
-                'IPK' => $this->ModelNilai->where('status_pinjam', 'Menunggu')->countAllResults(),
             ];
             echo view('components/header', $data);
             echo view('components/sidebar_mahasiswa', $data);

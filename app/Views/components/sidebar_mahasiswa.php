@@ -8,16 +8,19 @@
                     <!-- <label>Navigation</label> -->
                 </li>
                 <li class="nav-item">
-                    <a href="/kades" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    <a href="/mahasiswa" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
                 <li class="nav-item pcoded-menu-caption">
-                    <label>Management</label>
+                    <label>Perkuliahan</label>
                 </li>
                 <li class="nav-item">
-                    <a href="/kades/aset-barang" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Aset Barang</span></a>
+                    <a href="/mahasiswa/jadwal" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">Jadwal Perkuliahan</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="/kades/peminjaman" class="nav-link "><span class="pcoded-micon"><i class="feather icon-external-link"></i></span><span class="pcoded-mtext">Peminjaman</span></a>
+                    <a href="/mahasiswa/matakuliah" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Mata Kuliah</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/mahasiswa/nilai" class="nav-link "><span class="pcoded-micon"><i class="feather icon-bar-chart"></i></span><span class="pcoded-mtext">Nilai</span></a>
                 </li>
             </ul>
 
@@ -33,7 +36,7 @@
             <!-- ========   change your logo hear   ============ -->
             <!-- <img src="/assets/dist/assets/images/logo.png" alt="" class="logo">
                 <img src="/assets/dist/assets/images/logo-icon.png" alt="" class="logo-thumb"> -->
-            <h3 class="text-white">SIPADES</h3>
+            <h3 class="text-white">SIPIA</h3>
         </a>
         <a href="#!" class="mob-toggler">
             <i class="feather icon-more-vertical"></i>

@@ -6,8 +6,8 @@
             <div class="col-sm-6">
                 <div class="card support-bar overflow-hidden">
                     <div class="card-body pb-0">
-                        <h2 class="m-0"><?= $menunggu_konfirmasi ?></h2>
-                        <a href="/kades/peminjaman" class="text-c-blue">Lihat detail →</a>
+                        <h2 class="m-0"></h2>
+                        <a href="#" class="text-c-blue">Lihat detail →</a>
                         <p class="mb-3 mt-3">Total barang menunggu konfirmasi.</p>
                     </div>
                 </div>
@@ -15,8 +15,8 @@
             <div class="col-sm-6">
                 <div class="card support-bar overflow-hidden">
                     <div class="card-body pb-0">
-                        <h2 class="m-0"><?= $menunggu_dikembalikan ?></h2>
-                        <a href="/kades/menunggu-dikembalikan" class="text-c-blue">Lihat detail →</a>
+                        <h2 class="m-0"></h2>
+                        <a href="#" class="text-c-blue">Lihat detail →</a>
                         <p class="mb-3 mt-3">Total barang menunggu dikembalikan.</p>
                     </div>
                 </div>
@@ -36,18 +36,7 @@
                             <input type="text" class="form-control" readonly value="<?= session()->get('nama') ?>">
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>No. Telpon</label>
-                            <input type="text" class="form-control" readonly value="<?= session()->get('no_hp') ?>">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <input type="text" class="form-control" readonly value="<?= session()->get('alamat') ?>">
-                        </div>
-                    </div>
+                    
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Level Pengguna</label>

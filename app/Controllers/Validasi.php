@@ -3,9 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
-
 use App\Models\ModelAkun;
+use App\Models\ModelPendaftaran;
 
 class Validasi extends BaseController
 {
@@ -17,6 +16,9 @@ class Validasi extends BaseController
     public function login()
     {
         $ModelAkun = new ModelAkun();
+        $ModelPendaftaran = new ModelPendaftaran();
+
+
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
@@ -33,6 +35,22 @@ class Validasi extends BaseController
         $data = $ModelAkun->where('username', $username)->first();
         if ($data) {
             if (password_verify($password, $data['password'])) {
+                // Cek status pendaftaran
+                $pendaftaran = $ModelPendaftaran->where('id_akun', $data['id_akun'])->first();
+
+                if (!$pendaftaran) {
+                    // Jika tidak ada pendaftaran
+                    session()->setFlashdata('pesan', '<div class="alert alert-warning">Pendaftaran tidak ditemukan. Silakan daftar terlebih dahulu.</div>');
+                    return redirect()->to('/login')->withInput();
+                }
+
+                if ($pendaftaran['status_verefikasi'] !== 'Verified') {
+                    // Jika status pendaftaran tidak "Verified"
+                    session()->setFlashdata('pesan', '<div class="alert alert-danger">Pendaftaran Anda belum diverifikasi atau ditolak.</div>');
+                    return redirect()->to('/login')->withInput();
+                }
+
+                // Login berhasil
                 session()->set([
                     'id_akun' => $data['id_akun'],
                     'nama' => $data['nama'],
@@ -49,11 +67,11 @@ class Validasi extends BaseController
                         return redirect()->to('/unauthorized');
                 }
             } else {
-                session()->setFlashdata('pesan', '<div class="alert alert-danger" role="alert">Password salah</div>');
+                session()->setFlashdata('pesan', '<div class="alert alert-danger">Password salah</div>');
                 return redirect()->to('/login')->withInput();
             }
         } else {
-            session()->setFlashdata('pesan', '<div class="alert alert-danger" role="alert">Username tidak ditemukan</div>');
+            session()->setFlashdata('pesan', '<div class="alert alert-danger">Username tidak ditemukan</div>');
             return redirect()->to('/login')->withInput();
         }
     }

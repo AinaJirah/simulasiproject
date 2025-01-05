@@ -45,17 +45,6 @@
                             <input type="text" class="form-control" readonly value=" <?= session()->get('nama') ?>">
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>No. Telpon</label>
-                            <input type="text" class="form-control" readonly value=" <?= session()->get('no_hp') ?>">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <input type="text" class="form-control" readonly value=" <?= session()->get('alamat') ?>">
-                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">

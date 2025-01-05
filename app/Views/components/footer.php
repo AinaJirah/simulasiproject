@@ -19,18 +19,6 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="floating-label">No. Telpon</label>
-                                <input type="number" class="form-control" value="<?= session()->get('no_hp'); ?>" required name="no_hp">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="floating-label">Alamat</label>
-                                <input type="text" class="form-control" value="<?= session()->get('alamat'); ?>" required name="alamat">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
                                 <label class="floating-label">Username</label>
                                 <input type="text" class="form-control" value="<?= session()->get('username'); ?>" required name="username">
                             </div>

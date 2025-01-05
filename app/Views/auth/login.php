@@ -45,8 +45,8 @@
                                     <?php endif; ?>
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary mb-4 rounded">Login</button>
-                                <p class="mb-0 text-muted">Belum punya akun pendaftaran? <a href="/register"
-                                        class="f-w-400">Register</a></p>
+                                <p class="mb-0 text-muted">Anda <a href="/login/lupa"
+                                        class="f-w-400">Lupa Akun?</a></p>
                             </form>
                         </div>
                     </div>
@@ -55,8 +55,9 @@
         </div>
     </div>
 
-    <!-- Tambahkan Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/dist/assets/js/vendor-all.min.js"></script>
+    <script src="/assets/dist/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="/assets/dist/assets/js/pcoded.min.js"></script>
     </body>
 
 </html>
