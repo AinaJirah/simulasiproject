@@ -164,32 +164,4 @@ class Validasi extends BaseController
         session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Anda berhasil logout</div>');
         return redirect()->to('/');
     }
-
-    public function resetpassword()
-    {
-        echo view('auth/resetpassword');
-    }
-    
-    public function process()
-    {
-        $email = $this->request->getPost('email');
-
-        $validation = \Config\Services::validation();
-        $validation->setRules([
-            'email' => 'required|valid_email',
-        ]);
-
-        if (!$validation->withRequest($this->request)->run()) {
-            return redirect()->back()->with('validation', $validation)->withInput();
-        }
-
-        $ModelAkun = new ModelAkun();
-        $user = $ModelAkun->where('email', $email)->first();
-
-        if (!$user) {
-            return redirect()->back()->with('pesan', '<div class="text-danger">Email tidak ditemukan!</div>');
-        }
-
-        return redirect()->to('/login')->with('pesan', '<div class="text-success">Link reset password telah dikirim ke email Anda.</div>');
-    }
 }
