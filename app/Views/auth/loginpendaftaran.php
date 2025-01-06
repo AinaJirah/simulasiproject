@@ -44,6 +44,7 @@
                                 <button type="submit" class="btn btn-block btn-primary mb-4 rounded">Login</button>
                                 <p class="mb-0 text-muted">Belum punya akun pendaftaran? <a href="/register"
                                         class="f-w-400">Register</a></p>
+                                        <p class="mb-0 text-muted"><a href="/" class="btn-link">Kembali</a></p>
                             </form>
                         </div>
                     </div>

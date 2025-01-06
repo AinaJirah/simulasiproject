@@ -37,7 +37,7 @@ class Reset extends Controller
             $email->setMessage('Klik tautan berikut untuk mereset password Anda: <a href="' . base_url('reset/resetPassword/' . $token) . '">Reset Password</a>.<br>Link ini hanya berlaku selama 1 jam.');
 
             if ($email->send()) {
-                return redirect()->back()->with('pesan', '<div class="alert alert-success">Link reset password berhasil dikirim ke email Anda.</div>');
+                return redirect()->to('/login')->with('pesan', '<div class="alert alert-success">Link reset password berhasil dikirim ke email Anda.</div>');
             } else {
                 // Debug jika gagal
                 return redirect()->back()->with('pesan', '<div class="alert alert-danger">Gagal mengirim email. Silakan coba lagi nanti.</div>');

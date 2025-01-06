@@ -40,6 +40,7 @@ class Filters extends BaseConfig
                 'except' => [
                     '/',
                     'login',
+                    'reset',
                     'reset/*',
                     'register',
                     'pendaftaran',
@@ -50,6 +51,7 @@ class Filters extends BaseConfig
                 'except' => [
                     '/',
                     'login',
+                    'reset',
                     'reset/*',
                     'register',
                     'pendaftaran',
