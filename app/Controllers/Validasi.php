@@ -15,7 +15,7 @@ class Validasi extends BaseController
         echo view('auth/login');
     }
 
-    public function login()
+    public function login()//Proses login kedalam sistem
     {
         $ModelAkun = new ModelAkun();
         $ModelPendaftaran = new ModelPendaftaran();
@@ -23,8 +23,8 @@ class Validasi extends BaseController
 
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
-
-        // Validasi input
+        
+        // Validasi input dari form login
         if (
             !$this->validate([
                 'username' => 'required|min_length[3]|max_length[255]',
@@ -89,7 +89,7 @@ class Validasi extends BaseController
         echo view('auth/loginpendaftaran');
     }
 
-    public function loginpendaftaran()
+    public function loginpendaftaran()//proses login kedalam pendaftaran
     {
         $ModelAkun = new ModelAkun();
         $username = $this->request->getPost('username');
@@ -125,7 +125,7 @@ class Validasi extends BaseController
         }
     }
 
-    public function profil()
+    public function profil()//mengubah username dan password saat login
     {
         $ModelAkun = new ModelAkun();
         $id_akun = $this->request->getPost('id_akun');

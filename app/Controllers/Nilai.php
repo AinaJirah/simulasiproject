@@ -19,15 +19,16 @@ class Nilai extends BaseController
 
     public function index()
     {
-        // Check if the user is logged in and is a "Mahasiswa"
+        // Memeriksa apakah pengguna yang sedang login adalah "Mahasiswa"
         $id_mahasiswa = session()->get('id_mahasiswa');
         $level = session()->get('level');
 
+        // Jika pengguna bukan mahasiswa atau tidak memiliki ID mahasiswa, redirect ke halaman unauthorized
         if ($level !== 'Mahasiswa' || !$id_mahasiswa) {
             return redirect()->to('/unauthorized');
         }
 
-        // Fetch grades for the logged-in Mahasiswa
+        // Mengambil data nilai mahasiswa yang sedang login
         $nilai = $this->ModelNilai
             ->select('nilai.*, matakuliah.nama_matakuliah, matakuliah.sks')
             ->join('matakuliah', 'matakuliah.id_matakuliah = nilai.id_matakuliah')
@@ -35,7 +36,7 @@ class Nilai extends BaseController
             ->orderBy('semester', 'ASC')
             ->findAll();
 
-        // Group grades by semester
+        // Mengelompokkan nilai berdasarkan semester
         $nilaiBySemester = [];
         foreach ($nilai as $n) {
             $nilaiBySemester[$n['semester']][] = $n;
@@ -54,7 +55,7 @@ class Nilai extends BaseController
 
     public function cetak_transkrip()
     {
-        // Check if the user is logged in and is a "Mahasiswa"
+        // Memeriksa apakah pengguna yang sedang login adalah "Mahasiswa"
         $id_mahasiswa = session()->get('id_mahasiswa');
         $level = session()->get('level');
 
@@ -62,17 +63,17 @@ class Nilai extends BaseController
             return redirect()->to('/unauthorized');
         }
 
-        // Fetch grades for the logged-in Mahasiswa
+        // Mengambil data nilai mahasiswa yang sedang login
         $nilai = $this->ModelNilai
             ->select('nilai.*, matakuliah.nama_matakuliah, matakuliah.sks')
             ->join('matakuliah', 'matakuliah.id_matakuliah = nilai.id_matakuliah')
             ->where('id_mahasiswa', $id_mahasiswa)
             ->findAll();
 
-        // Fetch Mahasiswa details
+        // Mengambil data detail mahasiswa
         $mahasiswa = $this->ModelMahasiswa->where('id_mahasiswa', $id_mahasiswa)->first();
 
-        // Calculate IPK (Total Nilai Angka / Total Mata Kuliah Taken)
+        // Menghitung IPK (Jumlah Nilai Angka / Total Mata Kuliah yang Diambil)
         $totalNilaiAngka = 0;
         $totalMataKuliah = count($nilai);
         $totalSKS = 0;
@@ -92,7 +93,6 @@ class Nilai extends BaseController
             'total_sks' => $totalSKS,
         ];
 
-        // Render the print view
         echo view('mahasiswa/print/transkrip', $data);
     }
 }

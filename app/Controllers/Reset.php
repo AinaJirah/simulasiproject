@@ -12,7 +12,7 @@ class Reset extends Controller
         return view('auth/permintaan_reset'); // Tampilan untuk meminta email reset
     }
 
-    public function kirimPermintaan()
+    public function kirimPermintaan()//Mengirimkan email untuk reset password dengan link reset.
     {
         $emailInput = $this->request->getPost('email');
         $model = new ModelAkun();
@@ -29,7 +29,7 @@ class Reset extends Controller
                 'token_expiry' => $tokenExpiry,
             ]);
 
-            // Kirim email reset password
+            // Konfigurasi dan kirim email reset password
             $email = \Config\Services::email();
             $email->setFrom(config('Email')->fromEmail, config('Email')->fromName);
             $email->setTo($emailInput);
@@ -47,11 +47,12 @@ class Reset extends Controller
         }
     }
 
-    public function resetPassword($token = null)
+    public function resetPassword($token = null)//Menampilkan halaman reset password berdasarkan token.
     {
         $model = new ModelAkun();
         $user = $model->where('reset_token', $token)->first();
 
+        // Validasi token: cek apakah token valid atau sudah kedaluwarsa
         if (!$user || strtotime($user['token_expiry']) < time()) {
             return redirect()->to('/reset')->with('pesan', '<div class="alert alert-danger">Token tidak valid atau sudah kedaluwarsa.</div>');
         }
@@ -64,19 +65,22 @@ class Reset extends Controller
         return view('auth/reset_password', $data);
     }
 
-    public function ubahPassword()
+    public function ubahPassword()//Mengubah password berdasarkan token yang diberikan.
     {
         $model = new ModelAkun();
         $token = $this->request->getPost('token');
         $passwordBaru = $this->request->getPost('password');
         $konfirmasiPassword = $this->request->getPost('password1');
 
+        // Validasi: memastikan password dan konfirmasi password cocok
         if ($passwordBaru !== $konfirmasiPassword) {
             return redirect()->back()->with('pesan', '<div class="alert alert-danger">Password dan konfirmasi password tidak cocok.</div>');
         }
 
+        // Mencari user berdasarkan token
         $user = $model->where('reset_token', $token)->first();
 
+        // Validasi token: cek apakah token valid atau sudah kedaluwarsa
         if (!$user || strtotime($user['token_expiry']) < time()) {
             return redirect()->to('/reset')->with('pesan', '<div class="alert alert-danger">Token tidak valid atau sudah kedaluwarsa.</div>');
         }
