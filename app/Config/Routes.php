@@ -15,8 +15,11 @@ $routes->post('/login', 'Validasi::login');
 $routes->get('/logout', 'Validasi::logout');
 $routes->post('/profil', 'Validasi::profil');
 
-$routes->get('/reset', 'Validasi::resetpassword');
-$routes->post('/reset', 'Validasi::process');
+$routes->get('/reset', 'Reset::index');
+$routes->post('/reset', 'Reset::kirimPermintaan');
+$routes->get('/reset/resetPassword/(:any)', 'Reset::resetPassword/$1');
+$routes->post('/reset/ubahPassword', 'Reset::ubahPassword');
+
 
 $routes->get('/loginpendaftaran', 'Validasi::pendaftaran');
 $routes->post('/loginpendaftaran', 'Validasi::loginpendaftaran');
