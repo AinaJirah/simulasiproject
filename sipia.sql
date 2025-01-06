@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2025 at 08:50 AM
+-- Generation Time: Jan 06, 2025 at 07:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,16 +35,18 @@ CREATE TABLE `akun` (
   `password` varchar(100) NOT NULL,
   `level` enum('Admin','Mahasiswa') NOT NULL DEFAULT 'Mahasiswa',
   `status_akun` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_add` datetime NOT NULL DEFAULT current_timestamp(),
+  `reset_token` varchar(255) DEFAULT NULL,
+  `token_expiry` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `akun`
 --
 
-INSERT INTO `akun` (`id_akun`, `nama`, `email`, `username`, `password`, `level`, `status_akun`, `created_at`) VALUES
-(3, 'Mohammad Sofwat Aldi', 'm.aldy1170@gmail.com', 'aldi1170', '$2y$10$hrwrmMaduYPhHV/tDU8LdesQDi/RhtZnav/e7arCJxVp79kWu0YnW', 'Mahasiswa', 'Aktif', '2025-01-05 09:43:37'),
-(4, 'Sofwat Aldi', 'sofwataldi@gmail.com', 'sofwat1170', '$2y$10$MgcaSxDApu8zpbm2HmKPVO0w51L3apNNPx9X8LF3aUDaDH/IML8SS', 'Mahasiswa', 'Aktif', '2025-01-05 12:47:58');
+INSERT INTO `akun` (`id_akun`, `nama`, `email`, `username`, `password`, `level`, `status_akun`, `created_add`, `reset_token`, `token_expiry`) VALUES
+(3, 'Mohammad Sofwat Aldi', 'm.aldy1170@gmail.com', 'aldi1170', '$2y$10$7qu6HgfDK4qhR5CTn.ScJOkQDCn9m5wEnwnfQg9mz0dpFomSI0K6G', 'Mahasiswa', 'Aktif', '2025-01-05 09:43:37', NULL, NULL),
+(4, 'Sofwat Aldi', 'sofwataldi@gmail.com', 'sofwat1170', '$2y$10$MgcaSxDApu8zpbm2HmKPVO0w51L3apNNPx9X8LF3aUDaDH/IML8SS', 'Mahasiswa', 'Aktif', '2025-01-05 12:47:58', 'c078413ec62b5ac69bd9a67af8593c76', '2025-01-06 01:13:04');
 
 -- --------------------------------------------------------
 
@@ -81,7 +83,7 @@ CREATE TABLE `jadwal` (
   `tanggal` date NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
-  `ruangan` varchar(50) NOT NULL
+  `ruangan` varchar(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -144,7 +146,7 @@ CREATE TABLE `matakuliah` (
   `id_matakuliah` int(11) NOT NULL,
   `kode_matakuliah` varchar(50) NOT NULL,
   `nama_matakuliah` varchar(50) NOT NULL,
-  `sks` int(11) NOT NULL,
+  `sks` int(1) NOT NULL,
   `id_jurusan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
